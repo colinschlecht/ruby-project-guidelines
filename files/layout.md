@@ -16,8 +16,8 @@ Many to many
 Actors –< Characters >– Movies 
 
 Table Characters
-Super Name 
-Name 
+Super Hero Name 
+Real Name 
 Category (hero or evil)
 Actor Id 
 Movie id 
