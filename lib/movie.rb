@@ -3,6 +3,6 @@
 class Movie < ActiveRecord::Base 
 
     has_many :characters
-    has_many :actors 
+    has_many :movies, through :characters
 
 end
