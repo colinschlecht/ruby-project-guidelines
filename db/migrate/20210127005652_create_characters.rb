@@ -1,3 +1,5 @@
+
+
 class CreateCharacters < ActiveRecord::Migration[5.2]
   
   def change
@@ -11,5 +13,5 @@ class CreateCharacters < ActiveRecord::Migration[5.2]
 
     end
   end
-  
+
 end

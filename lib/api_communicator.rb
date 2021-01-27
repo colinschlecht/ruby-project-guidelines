@@ -3,7 +3,7 @@ require 'rest-client'
 require 'json'
 require 'pry'
 
-class Api_Seeder
+class ApiSeeder
 
     def get_info_from_api
         
@@ -16,13 +16,14 @@ class Api_Seeder
             heros = {} 
             heros[:super_name] = hero['alias']
             heros[:real_name] = hero['real_name']
-            heros[:movie] = hero['movie']
-            heros[:hero_or_evil] = hero['category']
-            heros[:actor] = hero['portrayed_by']
+            heros[:title] = hero['movie']
+            heros[:alignment] = hero['category']
+            heros[:name] = hero['portrayed_by']
             heros 
         end
-        clean_hero   
+        clean_hero 
+        binding.pry 
     end
-    
+
 end 
-# get_info_from_api
+

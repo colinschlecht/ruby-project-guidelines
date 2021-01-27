@@ -24,7 +24,6 @@ Movie id
 
 Table Movies
 Title 
-# Date 
 
 Table Actors
 Actor name 

@@ -1,3 +1,5 @@
+
+
 class CreateMovies < ActiveRecord::Migration[5.2]
   
   def change
@@ -7,5 +9,5 @@ class CreateMovies < ActiveRecord::Migration[5.2]
       
     end
   end
-  
+
 end
