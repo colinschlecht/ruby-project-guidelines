@@ -1,10 +1,10 @@
 
 
-# def find_character_by_name
-#     puts "Enter Name:"
-#     name = gets.strip 
-#     Character.all.find_by(name: == name)
-# end
+def find_character_by_name
+    puts "Enter Name:"
+    name = gets.strip 
+    # Character.all.find_by(name: == name)
+end
 
 
 
