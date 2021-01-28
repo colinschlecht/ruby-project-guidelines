@@ -88,7 +88,7 @@ require 'pry'
         puts "Would you like to search by Super Name, Incognito Name, or Actor Name\n\n"
         puts "Press 's' to search by Super Name (i.e. Iron Man)\n\n"
         puts "Press 'i' to search by Incognito Name (i.e. Dave)\n\n"
-        puts "Press 'a' to search by Actor Name (i.e. 'Chris Pratt)\n\n'"
+        puts "Press 'a' to search by Actor Name (i.e. 'Chris Pratt')\n\n"
     end
 
     def actor_search_req
