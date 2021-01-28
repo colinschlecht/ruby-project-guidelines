@@ -10,10 +10,8 @@ Marvelous is a simple command line application that provides a user with the abi
 
 1. Fork and clone this repository 
 2. Run bundle install 
-3. Run ApiSeeder class one time (to collect the data from the api)
-      - seed = ApiSeeder.new
-      - seed.get_info_from_api
 4. Rake db:mirgate 
+3. Rake db:seed
 5. Call the CommandLine class in bin/run.rb 
 
 ## Contributor
