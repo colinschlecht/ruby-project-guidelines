@@ -1,52 +1,73 @@
 class CommandLine 
-
+require 'pry'
 ###################      Methods         ########################
 
+    
     def find_character_by_real_name
-        # puts "Please enter a character's given name:" 
+        puts "Please enter a character's given name:" 
         name = gets.strip  
         
-        character = Character.all.filter{|character| character.real_name == name}
-        character.each do |hero|
-            puts "\n\n**Marvelous!**\n\nResults for #{name}...\n\n"
-            puts "Known Aliases: #{hero.super_name}\n\n"
-            puts "Real name: #{hero.real_name}\n\n"
-            puts "Alignment: #{hero.alignment}\n\n\n\n\n"
-        end
+        hero = Character.find_by("real_name LIKE ?", "%#{name}%")
+        puts "\n\nKnown Aliases: #{hero.super_name}\n\n"
+        puts "Real name: #{hero.real_name}\n\n"
+        puts "Alignment: #{hero.alignment}\n\n\n\n\n"
     end
     
     def find_character_by_super_name
-        # puts "Please enter a character's Super Hero name:" 
+        puts "Please enter a character's Super Hero name:" 
         name = gets.strip  
         
-        character = Character.all.filter{|character| character.super_name == name }
-        character.each do |hero|
-            puts "\n\n**Marvelous!**\n\nResults for #{name}...\n\n"
-            puts "Known Aliases: #{hero.super_name}\n\n"
-            puts "Real name: #{hero.real_name}\n\n"
-            puts "Alignment: #{hero.alignment}\n\n"
-        end
+        hero = Character.find_by("super_name LIKE ?", "%#{name}%")
+        puts "\n\nKnown Aliases: #{hero.super_name}\n\n"
+        puts "Real name: #{hero.real_name}\n\n"
+        puts "Alignment: #{hero.alignment}\n\n"
     end
-
-    def all_chars_by_movie
+    
+    def find_char_by_actor_name
+        puts "Please enter an Actor's name:"
+        name = gets.strip
+        hero = Actor.find_by("name LIKE ?", "%#{name}%").characters.first
+        puts "\n\nActor name: #{Actor.find_by("name LIKE ?", "%#{name}%").name}\n\n"
+        puts "Known Aliases: #{hero.super_name}\n\n"
+        puts "Real name: #{hero.real_name}\n\n"
+        puts "Alignment: #{hero.alignment}\n\n"
     end
-
-    ####
-
+    
+    def find_movies_by_actor_name
+        puts "Please enter an Actor's name:"
+        name = gets.strip
+        char = Actor.find_by("name LIKE ?", "%#{name}%").movies.first
+        puts "\n\nHere's a list of Marvelous movies that #{name} has been in:\n\n#{char.title}.\n\n\n"
+    end
     def find_movies_by_super_name
+        puts "Please enter an Super's name:"
+        name = gets.strip
+        char = Character.find_by("super_name LIKE ?", "%#{name}%").movie
+        puts "\n\nHere's a list of Marvelous movies that #{name} has been in:\n\n#{char.title}.\n\n\n"
     end
     def find_movies_by_real_name
+        puts "Please enter an Incognito name:"
+        name = gets.strip
+        char = Character.find_by("real_name LIKE ?", "%#{name}%").movie
+        puts "\n\nHere's a list of Marvelous movies that #{name} has been in:\n\n#{char.title}.\n\n\n"
     end
-
+    
     ####
-
+    
     def find_actor_by_super_name
-    end
-    def find_actor_by_real_name
-    end
-    def all_actors_by_movie
+        puts "Please enter an Super's name:"
+        name = gets.strip
+        char = Character.find_by("super_name LIKE ?", "%#{name}%").actor
+        puts "\n\nHere's a Marvelous Actor that has played #{name}:\n\n#{char.name}.\n\n\n"
     end
 
+    def find_actor_by_real_name
+        puts "Please enter an Incognito name:"
+        name = gets.strip
+        char = Character.find_by("real_name LIKE ?", "%#{name}%").actor
+        puts "\n\nHere's a Marvelous Actor that has played #{name}:\n\n#{char.name}.\n\n\n"
+    end
+    
     ################## all puts messages ######################
     
     def greeting
@@ -60,91 +81,70 @@ class CommandLine
         puts "~Press 'm' to search for a Marvel Movie\n\n"
         puts "~Press 'e' to exit.\n\n"
     end
-    ##If searching by character name
+
     def char_search_req
-        puts "Would you like to search by a 'Super Name' or 'Incognito name' type?\n\n"
-        puts "**Please enter 's' or 'i' to proceed**\n\n"
+        puts "Would you like to search by Super Name, Incognito Name, or Actor Name\n\n"
+        puts "Press 's' to search by Super Name (i.e. Iron Man)\n\n"
+        puts "Press 'i' to search by Incognito Name (i.e. Dave)\n\n"
+        puts "Press 'a' to search by Actor Name (i.e. 'Chris Pratt)\n\n'"
     end
+
     def actor_search_req
-        puts "Would you like to search for an actor by a 'Super Name', 'Incognito name', or list all Actors in a movie?\n\n"
-        puts "**Please enter 's' 'i' or 'a' to proceed**\n\n"
-    end
-    def super_search
-        puts "\n\nPlease enter a 'Super Name.' \n\n"
-    end
-    
-    def real_search
-        puts "\n\nPlease enter an 'Incognito Name.' \n\n"
+        puts "Would you like to search by a Super Name or Incognito Name?\n\n"
+        puts "Press 's' to search by Super Name (i.e. Iron Man)\n\n"
+        puts "Press 'i' to search by Incognito Name (i.e. Dave)\n\n"
     end
 
-    ##If searching by movie 
-    def all_chars_names_search
-        puts "Please enter a movie title to get a list of character names."
-    end
-
-    def all_actor_names
-        puts "Please enter a movie title to get a list of all actor names.\n\n"
-    end
-    
     def exit_marvelous
         puts "Goodbye!"
     end
-
     
- ############################         the loop          ##############################
-
+    
+    ############################         the loop          ##############################
+    
     def call
         greeting
         loop do
             how_to_menu
             choice = gets.chomp
             case choice
-
+                
             when "e" #exiting CLI app
                 exit_marvelous
                 exit
-
+                
             when "c" #searching for a marvel character
                 char_search_req
                 second_choice = gets.chomp
                 case second_choice
                 when "s" #searching for a marvel character by super name
-                    super_search
                     find_character_by_super_name
                 when "i" #searching for a marvel character by real name
-                    real_search
                     find_character_by_real_name
-                when "a" #all characters by movie
-                    all_chars_names_search
-                    all_cars_by_movie
+                when "a" #searches for a marvel character by actor name
+                    find_char_by_actor_name
                 end
-
+                
             when "m" #searching for a movie
                 char_search_req
                 second_choice = gets.chomp
                 case second_choice
-                when "s" #searching for a marvel Movie by super name
-                    super_search
-                    find_movies_by_super_name
-                when "i" #searching for a marvel Movie by real name
-                    real_search
-                    find_movies_by_real_name
-                when "a" #searching for a marvel movie by actor name
+                    when "s" #searching for a marvel Movie by super name
+                        find_movies_by_super_name
+                    when "i" #searching for a marvel Movie by real name
+                        find_movies_by_real_name
+                    when "a" #searching for a marvel movie by actor name
+                        find_movies_by_actor_name
                 end
-
+                
             when "a" #searching for an actor
                 actor_search_req
                 second_choice = gets.chomp
                 case second_choice
                 when "s" #searches for an actor by super hero name
-                    super_search
                     find_actor_by_super_name
                 when "i" #searches for an actor by incognito name
-                    real_search
                     find_actor_by_real_name
-                when "a" #searches for all actors in a movie
-                    all_actor_names
-                    all_actors_by_movie
                 end
                 
             end
@@ -156,85 +156,4 @@ end
 
 ############################ The BONE YARD ####################################
 
-
-
-
-
-
-
-
-
-
-# def get_char_by_real_name
-#     initial_response
-#     character = Character.all.filter{|character| character.real_name == name}
-# end
-
-
-
-
-# def find_character_by_super_name 
-#     puts "Please enter a super name:"
-#     name = gets.strip  
-
-#     character = Character.all.filter{|character| character.super_name == name}
-#     character.each do |hero|
-#         puts "Super name: #{hero.super_name}"
-#         puts "Real name: #{hero.real_name}"
-#         puts "Alignment: #{hero.alignment}"
-#     end
-#     binding.pry 
-# end
-
-# def find 
-#     puts "Enter Name:"
-#     name = gets.strip 
-#     Character.find_by
-# end
-
-
-# def welcome 
-#     puts "Welcome to Marelous!!!"
-#     puts "Created by: Colin Schlecht and Harrf Akbar"
-# end
-
-# def search_by
-#     puts ""
-#     puts "Please choose one of the following:"
-#     puts "  super hero name: "
-# end
-
-# def user_input
-#     puts "Please enter a "
-
-# end
-
-# def help
-#     puts "I accept the following commands:"
-#     puts "- help : displays this help message"
-#     puts "- list : displays a list of songs you can play"
-#     puts "- play : lets you choose a song to play"
-#     puts "- exit : exits this program"
-# end
-
-
-
-
-
-
-# Command line innitates:
-# "hello there! "welcome message"
-# "I'm here to help you find all the ~marvelous~ info youu're looking for"
-# Are you looking for:
-
-# 1. Character bio
-# 2. Character movie history
-# 3. Character actors
-# 4. all?
-
-# How would you like to search?
-# (if 1 - options would include
-# 1. searrch by char Name
-# 2. search by Birth name)
-
-# (later add in option to get )
+#recycling bin.
