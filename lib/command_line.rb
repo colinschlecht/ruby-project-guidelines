@@ -1,10 +1,42 @@
 
 
-def find_character_by_name
-    puts "Enter Name:"
-    name = gets.strip 
-    # Character.all.find_by(name: == name)
+def find_character_by_real_name
+    puts "Please enter a real name:" 
+    name = gets.strip  
+    
+    character = Character.all.filter{|character| character.real_name == name}
+    character.each do |hero|
+        puts "Super name: #{hero.super_name}"
+        puts "Real name: #{hero.real_name}"
+        puts "Alignment: #{hero.alignment}"
+    end
 end
+
+
+
+
+
+# def find_character_by_super_name 
+#     puts "Please enter a super name:"
+#     name = gets.strip  
+    
+#     character = Character.all.filter{|character| character.super_name == name}
+#     character.each do |hero|
+#         puts "Super name: #{hero.super_name}"
+#         puts "Real name: #{hero.real_name}"
+#         puts "Alignment: #{hero.alignment}"
+#     end
+#     binding.pry 
+# end
+
+# def find 
+#     puts "Enter Name:"
+#     name = gets.strip 
+#     Character.find_by
+# end
+
+
+
 
 
 

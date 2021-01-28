@@ -10,6 +10,6 @@ require_relative '../lib/command_line.rb'
 # test = ApiSeeder.new 
 # test.get_info_from_api
 
-find_character_by_name
-
+find_character_by_real_name
+# find_character_by_super_name
 
