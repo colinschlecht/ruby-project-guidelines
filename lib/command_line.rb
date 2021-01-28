@@ -2,7 +2,7 @@ class CommandLine
 require 'pry'
 ###################      Methods         ########################
 
-    
+    ###### Character search methods ######
     def find_character_by_real_name
         puts "Please enter a character's given name:" 
         name = gets.strip  
@@ -33,18 +33,21 @@ require 'pry'
         puts "Alignment: #{hero.alignment}\n\n"
     end
     
+    ##### Movie search methods #####
     def find_movies_by_actor_name
         puts "Please enter an Actor's name:"
         name = gets.strip
         char = Actor.find_by("name LIKE ?", "%#{name}%").movies.first
         puts "\n\nHere's a list of Marvelous movies that #{name} has been in:\n\n#{char.title}.\n\n\n"
     end
+
     def find_movies_by_super_name
         puts "Please enter an Super's name:"
         name = gets.strip
         char = Character.find_by("super_name LIKE ?", "%#{name}%").movie
         puts "\n\nHere's a list of Marvelous movies that #{name} has been in:\n\n#{char.title}.\n\n\n"
     end
+
     def find_movies_by_real_name
         puts "Please enter an Incognito name:"
         name = gets.strip
@@ -52,8 +55,7 @@ require 'pry'
         puts "\n\nHere's a list of Marvelous movies that #{name} has been in:\n\n#{char.title}.\n\n\n"
     end
     
-    ####
-    
+    ##### Actor search methods #####
     def find_actor_by_super_name
         puts "Please enter an Super's name:"
         name = gets.strip
