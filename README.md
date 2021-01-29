@@ -1,4 +1,4 @@
-`# Marvelous 
+# Marvelous 
 
 Marvelous is a Ruby app that searches through a marvel api based on keywords.
 
