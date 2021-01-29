@@ -30,7 +30,7 @@ class ApiSeeder
         end
         clean_hero  
     end
-
+#discovered missing characters, added this method to add in additional characters.
     def add_missing_characters
         Character.create(super_name: "Thor", real_name: "Thor", alignment: "Hero", actor: Actor.create(name: "Chris Hemsworth"), movie: Movie.create(title: "Thor, Thor: The Dark World, Thor: Ragnarok, Thor: Love and Thunder (unreleased), Avengers (entire series)"))
         Character.create(super_name: "Captain America", real_name: "Steve Rodgers", alignment: "Hero", actor: Actor.create(name: "Chris Evans"), movie: Movie.create(title: "Captain America, Captain America: Winter Soldier, Captain America: Civil War, Avengers (entire series)"))
