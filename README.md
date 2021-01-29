@@ -10,15 +10,13 @@ Marvelous is a simple command line application that provides a user with the abi
 
 1. Fork and clone this repository 
 2. Run bundle install 
-4. Rake db:mirgate 
-3. Rake db:seed
-5. Call the CommandLine class in bin/run.rb 
+3. Call the CommandLine class in bin/run.rb 
 
 ## Contributor
 
-* Raising an issue or suggesting an improvement 
+Raising an issue or suggesting an improvement 
 
-If you notice a problem with the app that you believe needs improvement. Feel free to make changes or leave comments. Use a git workflow to make it happen:
+* If you notice a problem with the app that you believe needs improvement. Feel free to make changes or leave comments. Use a git workflow to make it happen:
 
     1. Fork this repository 
     2. Make the changes on your fork, with a descriptive commits
