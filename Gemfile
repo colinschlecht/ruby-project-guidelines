@@ -8,3 +8,7 @@ gem "sqlite3", '~> 1.3.6'
 gem "activerecord", '~> 5.2'
 gem 'rake'
 gem 'rest-client'
+gem 'tty-font'
+gem "tty-color"
+gem 'colorize'
+gem 'rainbow'
