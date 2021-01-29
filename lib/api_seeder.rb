@@ -30,6 +30,15 @@ class ApiSeeder
         end
         clean_hero  
     end
+
+    def add_missing_characters
+        Character.create(super_name: "Thor", real_name: "Thor", alignment: "Hero", actor: Actor.create(name: "Chris Hemsworth"), movie: Movie.create(title: "Thor, Thor: The Dark World, Thor: Ragnarok, Thor: Love and Thunder (unreleased), Avengers (entire series)"))
+        Character.create(super_name: "Captain America", real_name: "Steve Rodgers", alignment: "Hero", actor: Actor.create(name: "Chris Evans"), movie: Movie.create(title: "Captain America, Captain America: Winter Soldier, Captain America: Civil War, Avengers (entire series)"))
+        Character.create(super_name: "Spider Man", real_name: "Peter Parker", alignment: "Hero", actor: Actor.create(name: "TUGBOAT MAGUIRE"), movie: Movie.create(title: "The ONLY spiderman movies that matter: Spider Man 1, Spider Man 2, Spider Man 3"))
+        Character.create(super_name: "Star Lord", real_name: "Peter Quil", alignment: "Hero", actor: Actor.create(name: "Chris Pratt"), movie: Movie.create(title: "Guardians of the Galaxy Vol 1, Guardians of the Galaxy Vol 2, Avengers: Infinity War, Avengers: End Game"))
+        Character.create(super_name: "Ant Man", real_name: "Scott Lang", alignment: "Hero", actor: Actor.create(name: "Paul Rudd"), movie: Movie.create(title: "Ant-Man, Ant-Man and the Wasp, Captain America Civil War, Avengers: Infinity War, Avengers: End Game"))
+        Character.create(super_name: "Vision", real_name: "Vision", alignment: "Hero", actor: Actor.create(name: "Paul Bettany"), movie: Movie.create(title: "Age Of Ultron, Avengers: Infinity War, Captain America: Civil War"))
+    end
 end 
 
 

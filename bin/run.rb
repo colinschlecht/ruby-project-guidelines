@@ -5,5 +5,6 @@ require_relative '../lib/command_line.rb'
 
 run = CommandLine.new
 run.call
+# run.find_char_by_actor_name
 
 
