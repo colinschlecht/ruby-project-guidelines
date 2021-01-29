@@ -16,7 +16,6 @@ def find_character_by_real_name
     puts "\n\nKnown Aliases: #{hero.super_name}\n\n"
     puts "Real name: #{hero.real_name}\n\n"
     puts "Alignment: #{hero.alignment}\n\n\n\n\n"
-    waiting
 end
 
 def find_character_by_super_name
@@ -28,7 +27,6 @@ def find_character_by_super_name
     puts "\n\nKnown Aliases: #{hero.super_name}\n\n"
     puts "Real name: #{hero.real_name}\n\n"
     puts "Alignment: #{hero.alignment}\n\n"
-    waiting
 end
 
 def find_char_by_actor_name
@@ -40,7 +38,6 @@ def find_char_by_actor_name
     puts "Known Aliases: #{hero.super_name}\n\n"
     puts "Real name: #{hero.real_name}\n\n"
     puts "Alignment: #{hero.alignment}\n\n"
-    waiting
 end
 
 ##### Movie search methods #####
@@ -50,11 +47,6 @@ def find_movies_by_actor_name
     name = gets.strip
     char = Actor.find_by("name LIKE ?", "%#{name}%").movies.first
     puts "\n\nHere's a list of Marvelous movies that #{name} has been in:\n\n#{char.title}.\n\n\n"
-    waiting
-    single_space
-    waiting
-    single_space
-    returning
 end
 
 def find_movies_by_super_name
@@ -63,11 +55,6 @@ def find_movies_by_super_name
     name = gets.strip
     char = Character.find_by("super_name LIKE ?", "%#{name}%").movie
     puts "\n\nHere's a list of Marvelous movies that #{name} has been in:\n\n#{char.title}.\n\n\n"
-    waiting
-    single_space
-    waiting
-    single_space
-    returning
 end
 
 def find_movies_by_real_name
@@ -76,11 +63,6 @@ def find_movies_by_real_name
     name = gets.strip
     char = Character.find_by("real_name LIKE ?", "%#{name}%").movie
     puts "\n\nHere's a list of Marvelous movies that #{name} has been in:\n\n#{char.title}.\n\n\n"
-    waiting
-    single_space
-    waiting
-    single_space
-    returning
 end
 
 ##### Actor search methods #####
@@ -90,11 +72,6 @@ def find_actor_by_super_name
     name = gets.strip
     char = Character.find_by("super_name LIKE ?", "%#{name}%").actor
     puts "\n\nHere's a Marvelous Actor that has played #{name}:\n\n#{char.name}.\n\n\n"
-    waiting
-    single_space
-    waiting
-    single_space
-    returning
 end
 
 def find_actor_by_real_name
@@ -103,12 +80,6 @@ def find_actor_by_real_name
     name = gets.strip
     char = Character.find_by("real_name LIKE ?", "%#{name}%").actor
     puts "\n\nHere's a Marvelous Actor that has played #{name}:\n\n#{char.name}.\n\n\n"
-    waiting
-    single_space
-    waiting
-    single_space
-    returning
-
 end
 
 ################## all puts messages ######################
@@ -190,6 +161,15 @@ def returning
     puts "Returning to main screen. You may scroll back up to view your results at any time!"
     sleep 3.5
 end
+
+def wait_and_return
+    sleep 0.4
+    waiting
+    single_space
+    waiting
+    single_space
+    returning
+end
     
     
     ############################         the loop          ##############################
@@ -201,6 +181,11 @@ end
             how_to_menu
             choice = gets.chomp
             case choice
+            when "b"
+                waiting
+                greeting
+                how_to_menu
+                choice = gets.chomp
                 
             when "e" #exiting CLI app
                 full_web
@@ -218,10 +203,18 @@ end
                 case second_choice
                 when "s" #searching for a marvel character by super name
                     find_character_by_super_name
+                    wait_and_return
                 when "i" #searching for a marvel character by real name
                     find_character_by_real_name
+                    wait_and_return
                 when "a" #searches for a marvel character by actor name
                     find_char_by_actor_name
+                    wait_and_return
+                when "b"
+                    waiting
+                    greeting
+                    how_to_menu
+                    choice = gets.chomp
                 else
                    wrong_prompt
                    char_search_req
@@ -234,10 +227,18 @@ end
                 case second_choice
                 when "s" #searching for a marvel Movie by super name
                     find_movies_by_super_name
+                    wait_and_return
                 when "i" #searching for a marvel Movie by real name
                     find_movies_by_real_name
+                    wait_and_return
                 when "a" #searching for a marvel movie by actor name
                     find_movies_by_actor_name
+                    wait_and_return
+                when "b"
+                    waiting
+                    greeting
+                    how_to_menu
+                    choice = gets.chomp
                 else
                     wrong_prompt
                     char_search_req
@@ -250,8 +251,15 @@ end
                 case second_choice
                 when "s" #searches for an actor by super hero name
                     find_actor_by_super_name
+                    wait_and_return
                 when "i" #searches for an actor by incognito name
                     find_actor_by_real_name
+                    wait_and_return
+                when "b"
+                    waiting
+                    greeting
+                    how_to_menu
+                    choice = gets.chomp
                 else
                     wrong_prompt
                     actor_search_req
